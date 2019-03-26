@@ -5,10 +5,7 @@ import { createTodo } from '../actions/list_actions';
 
 
 const mstp = (state, ownProps) => {
-    let list = [];
-    return ({
-        list
-    });
+    
 };
 
 const mdtp = (dispatch, ownProps) => {
