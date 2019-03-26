@@ -4,7 +4,7 @@ import React from 'react';
 class TodoList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {items: [], el: ''};
+        this.state = {items:[], el: ''};
         this.handleSubmit = this.handleSubmit.bind(this);
         this.update = this.update.bind(this);
 
@@ -13,19 +13,21 @@ class TodoList extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         // this.props.createTodo(this.state).then(() => this.setState({ }));
-        let updated = this.state.items.concat(this.state.el);
-        console.log(this.state.items);
-       
+        console.log(this.state)
+        let updated = this.state.items.concat([this.state.el]);
+
+
         this.setState({el: '', items: updated}, () => {
-            localStorage.setItem('item', this.state.items)
-        })
+            localStorage.setItem('items', JSON.stringify(this.state.items));
+        });
     
         
     }
 
     componentDidMount() {
-        if(localStorage.item){
-            this.setState({items: localStorage.item});
+        if(localStorage.items){
+            let arr = JSON.parse(localStorage.getItem('items'))
+            this.setState({items: arr});
         }
 
     }
